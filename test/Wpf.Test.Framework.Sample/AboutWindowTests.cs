@@ -21,6 +21,9 @@ namespace Wpf.Test.Framework.Sample
             });
         }
 
+        /// <summary>
+        /// 测试多个测试可以顺序执行
+        /// </summary>
         [Test]
         public void GetAboutText_test2()
         {
@@ -36,6 +39,10 @@ namespace Wpf.Test.Framework.Sample
             UnderTestApplicationWrapper applicationWrapper = new UnderTestApplicationWrapper(app);
             MainWindowWrapper mainWindowWrapper = applicationWrapper.MainWindowWrapper;
             FrameworkElementCapture.Capture(mainWindowWrapper.Window, Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TestImages", "main_window.png"));
+            await Task.Delay(1000);
+            ScreenCapture.CaptureDesktop(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TestImages", "desktop.png"));
+            ScreenCapture.CaptureForegroundWindow(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TestImages", "foreground_window.png"));
+            ScreenCapture.Capture(new System.Drawing.Rectangle(1500, 400, 300, 200), Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TestImages", "fix_rect.png"));
             mainWindowWrapper.ClickAbout();
 
             Button aboutButton = mainWindowWrapper.FindElement<Button>(btn => btn.Name == "btnAbout");
