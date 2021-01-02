@@ -1,7 +1,9 @@
 ﻿using ApplicationUnderTest;
 using NUnit.Framework;
 using System;
+using System.IO;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace Wpf.Test.Framework.Sample
 {
@@ -24,9 +26,17 @@ namespace Wpf.Test.Framework.Sample
             UnderTestApplicationWrapper applicationWrapper = new UnderTestApplicationWrapper(app);
 
             MainWindowWrapper mainWindowWrapper = applicationWrapper.MainWindowWrapper;
+            FrameworkElementCapture.Capture(mainWindowWrapper.Window, Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TestImages", "main_window.png"));
             mainWindowWrapper.ClickAbout();
 
+            Button aboutButton = mainWindowWrapper.FindElement<Button>(btn => btn.Name == "btnAbout");
+            FrameworkElementCapture.Capture(aboutButton, Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TestImages", "about_button.png"));
+
             AboutWindowWrapper aboutWindowWrapper = applicationWrapper.AboutWindowWrapper;
+            FrameworkElementCapture.Capture(aboutWindowWrapper.Window, Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TestImages", "about_window.png"));
+
+            TextBlock aboutTextBlock = aboutWindowWrapper.FindElement<TextBlock>(t => true && !string.IsNullOrWhiteSpace(t.Text));
+            FrameworkElementCapture.Capture(aboutTextBlock, Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TestImages", "about_text.png"));
 
             string aboutText = aboutWindowWrapper.GetAboutText();
 
