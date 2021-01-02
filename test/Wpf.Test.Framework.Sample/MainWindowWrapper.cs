@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using Wpf.Test.Framework.Extensions;
 
 namespace Wpf.Test.Framework.Sample
 {
@@ -13,7 +14,7 @@ namespace Wpf.Test.Framework.Sample
         {
             Button aboutButton = this.FindElement<Button>(btn => btn.Name == "btnAbout");
 
-            aboutButton.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+            FrameworkElementMouseExtension.Click(aboutButton);
         }
     }
 }

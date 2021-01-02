@@ -51,6 +51,7 @@
     <Compile Include="ElementWrapper.cs" />
     <Compile Include="Exceptions\ElementNotFoundException.cs" />
     <Compile Include="Exceptions\WindowNotFoundException.cs" />
+    <Compile Include="Extensions\FrameworkElementMouseExtension.cs" />
     <Compile Include="FrameworkElementFinder.cs" />
     <Compile Include="IElementFinder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

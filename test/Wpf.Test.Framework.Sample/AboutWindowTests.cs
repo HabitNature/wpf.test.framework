@@ -4,6 +4,7 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using Wpf.Test.Framework.Extensions;
 
 namespace Wpf.Test.Framework.Sample
 {
@@ -20,11 +21,19 @@ namespace Wpf.Test.Framework.Sample
             });
         }
 
+        [Test]
+        public void GetAboutText_test2()
+        {
+            this.ExecuteInSeparateAppDomain(() =>
+            {
+                this.ExecuteApplicationTest(this.GetAboutText_Inner);
+            });
+        }
+
         private async Task GetAboutText_Inner(App app)
         {
             await Task.Delay(0);
             UnderTestApplicationWrapper applicationWrapper = new UnderTestApplicationWrapper(app);
-
             MainWindowWrapper mainWindowWrapper = applicationWrapper.MainWindowWrapper;
             FrameworkElementCapture.Capture(mainWindowWrapper.Window, Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TestImages", "main_window.png"));
             mainWindowWrapper.ClickAbout();
@@ -37,7 +46,8 @@ namespace Wpf.Test.Framework.Sample
 
             TextBlock aboutTextBlock = aboutWindowWrapper.FindElement<TextBlock>(t => true && !string.IsNullOrWhiteSpace(t.Text));
             FrameworkElementCapture.Capture(aboutTextBlock, Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TestImages", "about_text.png"));
-
+            aboutTextBlock.Hover();
+            bool isHover = aboutTextBlock.IsMouseOver;
             string aboutText = aboutWindowWrapper.GetAboutText();
 
             Assert.AreEqual(aboutText, "Applicaiton under test.");
