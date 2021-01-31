@@ -7,8 +7,9 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Border>
+        <!--<Border>
             <Button x:Name="btnAbout" Content="Help" MinWidth="120" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20" Padding="10,5" Click="btnHelp_Click"/>
-        </Border>
+        </Border>-->
+        
     </Grid>
 </Window>

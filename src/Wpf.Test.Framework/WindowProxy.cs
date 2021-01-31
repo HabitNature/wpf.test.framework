@@ -3,13 +3,13 @@ using System.Windows;
 
 namespace Wpf.Test.Framework
 {
-    public class WindowWrapper : ElementFinder
+    public class WindowProxy : ElementFinder
     {
         public Window Window { get; protected set; }
 
         protected override DependencyObject Scope => this.Window;
 
-        public WindowWrapper(Window window)
+        public WindowProxy(Window window)
         {
             if (null == window)
             {

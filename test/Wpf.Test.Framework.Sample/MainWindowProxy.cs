@@ -4,9 +4,9 @@ using Wpf.Test.Framework.Extensions;
 
 namespace Wpf.Test.Framework.Sample
 {
-    public class MainWindowWrapper : WindowWrapper
+    public class MainWindowProxy : WindowProxy
     {
-        public MainWindowWrapper(Window window) : base(window)
+        public MainWindowProxy(Window window) : base(window)
         {
         }
 
@@ -14,7 +14,7 @@ namespace Wpf.Test.Framework.Sample
         {
             Button aboutButton = this.FindElement<Button>(btn => btn.Name == "btnAbout");
 
-            FrameworkElementMouseExtension.Click(aboutButton);
+            FrameworkElementMouseExtension.DoClick(aboutButton);
         }
     }
 }

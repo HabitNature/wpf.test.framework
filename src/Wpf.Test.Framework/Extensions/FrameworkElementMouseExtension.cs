@@ -8,7 +8,7 @@ namespace Wpf.Test.Framework.Extensions
 {
     public static class FrameworkElementMouseExtension
     {
-        public static void Click(this FrameworkElement element)
+        public static void DoClick(this FrameworkElement element)
         {
             if(element is ButtonBase)
             {
@@ -30,7 +30,7 @@ namespace Wpf.Test.Framework.Extensions
             }
         }
 
-        public static void DoubleClick(this FrameworkElement element)
+        public static void DoDoubleClick(this FrameworkElement element)
         {
             if(element is Control)
             {
@@ -38,19 +38,19 @@ namespace Wpf.Test.Framework.Extensions
             }
             else
             {
-                Click(element);
+                DoClick(element);
                 Thread.Sleep(50);
-                Click(element);
+                DoClick(element);
             }
         }
 
-        public static void RightClick(this FrameworkElement element)
+        public static void DoRightClick(this FrameworkElement element)
         {
             element.RaiseEvent(MouseButton.Right, FrameworkElement.MouseRightButtonDownEvent);
             element.RaiseEvent(MouseButton.Right, FrameworkElement.MouseRightButtonUpEvent);
         }
 
-        public static void Hover(this FrameworkElement element)
+        public static void DoHover(this FrameworkElement element)
         {
             element.RaiseEvent(MouseButton.Left, FrameworkElement.MouseEnterEvent);
             element.RaiseEvent(MouseButton.Left, FrameworkElement.MouseMoveEvent);

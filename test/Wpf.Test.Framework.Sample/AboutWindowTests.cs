@@ -36,8 +36,8 @@ namespace Wpf.Test.Framework.Sample
         private async Task GetAboutText_Inner(App app)
         {
             await Task.Delay(0);
-            UnderTestApplicationWrapper applicationWrapper = new UnderTestApplicationWrapper(app);
-            MainWindowWrapper mainWindowWrapper = applicationWrapper.MainWindowWrapper;
+            UnderTestApplicationProxy applicationWrapper = new UnderTestApplicationProxy(app);
+            MainWindowProxy mainWindowWrapper = applicationWrapper.MainWindowProxy;
             FrameworkElementCapture.Capture(mainWindowWrapper.Window, Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TestImages", "main_window.png"));
             await Task.Delay(1000);
             ScreenCapture.CaptureDesktop(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TestImages", "desktop.png"));
@@ -48,12 +48,12 @@ namespace Wpf.Test.Framework.Sample
             Button aboutButton = mainWindowWrapper.FindElement<Button>(btn => btn.Name == "btnAbout");
             FrameworkElementCapture.Capture(aboutButton, Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TestImages", "about_button.png"));
 
-            AboutWindowWrapper aboutWindowWrapper = applicationWrapper.AboutWindowWrapper;
+            AboutWindowProxy aboutWindowWrapper = applicationWrapper.AboutWindowProxy;
             FrameworkElementCapture.Capture(aboutWindowWrapper.Window, Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TestImages", "about_window.png"));
 
             TextBlock aboutTextBlock = aboutWindowWrapper.FindElement<TextBlock>(t => true && !string.IsNullOrWhiteSpace(t.Text));
             FrameworkElementCapture.Capture(aboutTextBlock, Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TestImages", "about_text.png"));
-            aboutTextBlock.Hover();
+            aboutTextBlock.DoHover();
             bool isHover = aboutTextBlock.IsMouseOver;
             string aboutText = aboutWindowWrapper.GetAboutText();
 

@@ -45,10 +45,10 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicationWrapper.cs" />
+    <Compile Include="ApplicationProxy.cs" />
     <Compile Include="AppUiTester.cs" />
     <Compile Include="ElementFinder.cs" />
-    <Compile Include="ElementWrapper.cs" />
+    <Compile Include="ElementProxy.cs" />
     <Compile Include="Exceptions\ElementNotFoundException.cs" />
     <Compile Include="Exceptions\WindowNotFoundException.cs" />
     <Compile Include="Extensions\FrameworkElementMouseExtension.cs" />
@@ -58,7 +58,7 @@
     <Compile Include="FrameworkElementCapture.cs" />
     <Compile Include="ScreenCapture.cs" />
     <Compile Include="Wait.cs" />
-    <Compile Include="WindowWrapper.cs" />
+    <Compile Include="WindowProxy.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

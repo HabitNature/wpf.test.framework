@@ -47,11 +47,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AboutWindowTests.cs" />
-    <Compile Include="AboutWindowWrapper.cs" />
+    <Compile Include="AboutWindowProxy.cs" />
     <Compile Include="BaseTests.cs" />
-    <Compile Include="MainWindowWrapper.cs" />
+    <Compile Include="LoginTests.cs" />
+    <Compile Include="LoginWindowProxy.cs" />
+    <Compile Include="MainWindowProxy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UnderTestApplicationWrapper.cs" />
+    <Compile Include="UnderTestApplicationProxy.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="NUnit">

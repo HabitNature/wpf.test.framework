@@ -4,11 +4,11 @@ using Wpf.Test.Framework.Exceptions;
 
 namespace Wpf.Test.Framework
 {
-    public class ApplicationWrapper<TApplication> where TApplication : Application
+    public class ApplicationProxy<TApplication> where TApplication : Application
     {
         public TApplication Application { get; protected set; }
 
-        public ApplicationWrapper(TApplication application)
+        public ApplicationProxy(TApplication application)
         {
             if (null == application)
             {
@@ -18,7 +18,7 @@ namespace Wpf.Test.Framework
             this.Application = application;
         }
 
-        public WindowWrapper FindWindowWrapper(Predicate<Window> predicate, int timeout = Wait.DEFAULT_TIMEOUT)
+        public WindowProxy FindWindowWrapper(Predicate<Window> predicate, int timeout = Wait.DEFAULT_TIMEOUT)
         {
             Window targetWindow = this.FindWindow(predicate, timeout);
 
@@ -27,7 +27,7 @@ namespace Wpf.Test.Framework
                 throw new WindowNotFoundException();
             }
 
-            return new WindowWrapper(targetWindow);
+            return new WindowProxy(targetWindow);
         }
 
         protected Window GetWindow(Predicate<Window> predicate)

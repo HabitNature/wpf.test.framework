@@ -3,9 +3,9 @@ using System.Windows.Controls;
 
 namespace Wpf.Test.Framework.Sample
 {
-    public class AboutWindowWrapper : WindowWrapper
+    public class AboutWindowProxy : WindowProxy
     {
-        public AboutWindowWrapper(Window window) : base(window)
+        public AboutWindowProxy(Window window) : base(window)
         {
 
         }
