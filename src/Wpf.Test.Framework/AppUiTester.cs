@@ -32,6 +32,10 @@ namespace Wpf.Test.Framework
                 {
                     await test(app);
                 }
+                catch(Exception exp)
+                {
+                    AppDomain.CurrentDomain.SetData("Exception", exp);
+                }
                 finally
                 {
                     app.Dispatcher.InvokeShutdown();
@@ -60,6 +64,11 @@ namespace Wpf.Test.Framework
             appDomainSetup.ConfigurationFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, this.ApplicationConfigPath);
             AppDomain appDomain = AppDomain.CreateDomain(domainName, null, appDomainSetup);
 
+            appDomain.UnhandledException += delegate (object sender, UnhandledExceptionEventArgs e)
+            {
+                throw e.ExceptionObject as Exception;
+            };
+
             try
             {
                 appDomain.DoCallBack(testDelegate);
@@ -68,6 +77,13 @@ namespace Wpf.Test.Framework
             {
                 GC.Collect();
                 GC.WaitForPendingFinalizers();
+
+                Exception exp = appDomain.GetData("Exception") as Exception;
+
+                if(null != exp)
+                {
+                    throw exp;
+                }
             }
         }
     }
