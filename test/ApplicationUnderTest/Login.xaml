@@ -16,6 +16,10 @@
         <Style TargetType="Button">
             <Setter Property="Margin" Value="5"/>
         </Style>
+
+        <Style TargetType="local:NoAutomationTextBox">
+            <Setter Property="Margin" Value="5"/>
+        </Style>
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -29,7 +33,8 @@
         </Grid.RowDefinitions>
         <Label Content="User name"/>
         <Label Content="Password" Grid.Row="1"/>
-        <TextBox x:Name="txbUser" Grid.Column="1"/>
+        <!--<TextBox x:Name="txbUser" Grid.Column="1"/>-->
+        <local:NoAutomationTextBox x:Name="txbUser2" Grid.Column="1"/>
         <TextBox x:Name="txbPassword" Grid.Row="1" Grid.Column="1"/>
         <Button x:Name="btnLogin" Grid.Column="1" Grid.Row="2" Content="Login" MinWidth="80" Click="btnLogin_Click"/>
     </Grid>

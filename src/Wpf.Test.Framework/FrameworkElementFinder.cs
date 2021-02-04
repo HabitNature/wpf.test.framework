@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
 using Wpf.Test.Framework.Exceptions;
@@ -7,7 +8,12 @@ namespace Wpf.Test.Framework
 {
     internal static class FrameworkElementFinder
     {
-        public static TElement Find<TElement>(DependencyObject scope, Predicate<TElement> predicate, int timeout = Wait.DEFAULT_TIMEOUT) where TElement : FrameworkElement
+        public static Task<TElement> FindAsync<TElement>(DependencyObject scope, Predicate<TElement> predicate, int timeout = Wait.DEFAULT_TIMEOUT) where TElement : FrameworkElement
+        {
+            return FindAsyncInner<TElement>(scope, predicate, timeout);
+        }
+
+        private static async Task<TElement> FindAsyncInner<TElement>(DependencyObject scope, Predicate<TElement> predicate, int timeout = Wait.DEFAULT_TIMEOUT) where TElement : FrameworkElement
         {
             if (null == scope)
             {
@@ -16,7 +22,7 @@ namespace Wpf.Test.Framework
 
             TElement targetElement = null;
 
-            Wait.Until(() =>
+            await Wait.UntilAsync(() =>
             {
                 targetElement = Find<TElement>(scope, predicate);
 
@@ -27,6 +33,8 @@ namespace Wpf.Test.Framework
             {
                 throw new ElementNotFoundException();
             }
+
+            await Task.Delay(RunnerSettings.Delay);
 
             return targetElement;
         }

@@ -20,11 +20,10 @@ namespace Wpf.Test.Framework.Sample
 
         private async Task Login_Inner(App app)
         {
-            await Task.Delay(0);
             UnderTestApplicationProxy applicationProxy = new UnderTestApplicationProxy(app);
-            LoginWindowProxy loginWindowProxy = applicationProxy.LoginWindowProxy;
+            LoginWindowProxy loginWindowProxy = await applicationProxy.LoginWindowProxyAsync();
 
-            loginWindowProxy.Login("user", "password");
+            await loginWindowProxy.LoginAsync("user", "password");
         }
     }
 }

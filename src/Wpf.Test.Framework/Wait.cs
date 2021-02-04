@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace Wpf.Test.Framework
 {
@@ -30,6 +31,34 @@ namespace Wpf.Test.Framework
                 }
 
                 Thread.Sleep(interval);
+                isExpected = predicate();
+            }
+
+            return isExpected;
+        }
+
+        public static async Task<bool> UntilAsync(Func<bool> predicate, int timeout = DEFAULT_TIMEOUT, int interval = INTERVAL)
+        {
+            if (null == predicate)
+            {
+                return true;
+            }
+
+            timeout = CorrectTimeout(timeout);
+            interval = CorrectInterval(interval);
+
+            CancellationTokenSource cancellationTokenSource = new CancellationTokenSource(timeout);
+
+            bool isExpected = predicate();
+
+            while (!isExpected && !cancellationTokenSource.IsCancellationRequested)
+            {
+                if (cancellationTokenSource.IsCancellationRequested)
+                {
+                    return isExpected;
+                }
+
+                await Task.Delay(interval);
                 isExpected = predicate();
             }
 

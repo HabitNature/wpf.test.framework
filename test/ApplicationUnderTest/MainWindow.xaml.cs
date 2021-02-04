@@ -11,12 +11,5 @@ namespace ApplicationUnderTest
         {
             InitializeComponent();
         }
-
-        private void btnHelp_Click(object sender, RoutedEventArgs e)
-        {
-            AboutWindow aboutWindow = new AboutWindow();
-
-            aboutWindow.Show();
-        }
     }
 }

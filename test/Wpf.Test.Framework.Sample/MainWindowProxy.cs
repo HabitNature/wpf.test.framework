@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using Wpf.Test.Framework.Extensions;
 
@@ -10,9 +11,9 @@ namespace Wpf.Test.Framework.Sample
         {
         }
 
-        public void ClickAbout()
+        public async Task ClickAboutAsync()
         {
-            Button aboutButton = this.FindElement<Button>(btn => btn.Name == "btnAbout");
+            Button aboutButton = await this.FindElementAsync<Button>(btn => btn.Name == "btnAbout");
 
             FrameworkElementMouseExtension.DoClick(aboutButton);
         }

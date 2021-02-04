@@ -46,8 +46,6 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AboutWindowTests.cs" />
-    <Compile Include="AboutWindowProxy.cs" />
     <Compile Include="BaseTests.cs" />
     <Compile Include="LoginTests.cs" />
     <Compile Include="LoginWindowProxy.cs" />

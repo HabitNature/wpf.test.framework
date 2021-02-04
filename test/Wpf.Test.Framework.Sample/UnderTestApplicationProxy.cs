@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Threading.Tasks;
+using System.Windows;
 
 namespace Wpf.Test.Framework.Sample
 {
@@ -9,34 +10,18 @@ namespace Wpf.Test.Framework.Sample
 
         }
 
-        public MainWindowProxy MainWindowProxy
+        public async Task<MainWindowProxy> MainWindowProxyAsync()
         {
-            get
-            {
-                Window aboutWindow = this.FindWindow(window => window.GetType() == typeof(ApplicationUnderTest.MainWindow));
+            Window aboutWindow = await this.FindWindowAsync(window => window.GetType() == typeof(ApplicationUnderTest.MainWindow));
 
-                return new MainWindowProxy(aboutWindow);
-            }
+            return new MainWindowProxy(aboutWindow);
         }
 
-        public AboutWindowProxy AboutWindowProxy
+        public async Task<LoginWindowProxy> LoginWindowProxyAsync()
         {
-            get
-            {
-                Window aboutWindow = this.FindWindow(window => window.GetType() == typeof(ApplicationUnderTest.AboutWindow));
+            Window aboutWindow = await this.FindWindowAsync(window => window.GetType() == typeof(ApplicationUnderTest.Login));
 
-                return new AboutWindowProxy(aboutWindow);
-            }
-        }
-
-        public LoginWindowProxy LoginWindowProxy
-        {
-            get
-            {
-                Window aboutWindow = this.FindWindow(window => window.GetType() == typeof(ApplicationUnderTest.Login));
-
-                return new LoginWindowProxy(aboutWindow);
-            }
+            return new LoginWindowProxy(aboutWindow);
         }
     }
 }

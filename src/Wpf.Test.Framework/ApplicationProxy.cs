@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows;
 using Wpf.Test.Framework.Exceptions;
 
@@ -18,9 +19,9 @@ namespace Wpf.Test.Framework
             this.Application = application;
         }
 
-        public WindowProxy FindWindowWrapper(Predicate<Window> predicate, int timeout = Wait.DEFAULT_TIMEOUT)
+        public async Task<WindowProxy> FindWindowProxyAsync(Predicate<Window> predicate, int timeout = Wait.DEFAULT_TIMEOUT)
         {
-            Window targetWindow = this.FindWindow(predicate, timeout);
+            Window targetWindow = await this.FindWindowAsync(predicate, timeout);
 
             if (null == targetWindow)
             {
@@ -48,11 +49,11 @@ namespace Wpf.Test.Framework
             return null;
         }
 
-        protected Window FindWindow(Predicate<Window> predicate, int timeout = Wait.DEFAULT_TIMEOUT)
+        protected async Task<Window> FindWindowAsync(Predicate<Window> predicate, int timeout = Wait.DEFAULT_TIMEOUT)
         {
             Window targetWindow = null;
 
-            Wait.Until(() =>
+            await Wait.UntilAsync(() =>
             {
                 targetWindow = this.GetWindow(predicate);
 
