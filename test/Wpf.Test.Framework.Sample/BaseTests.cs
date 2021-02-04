@@ -1,6 +1,4 @@
-﻿using ApplicationUnderTest;
-using NUnit.Framework;
-using System;
+﻿using System;
 
 namespace Wpf.Test.Framework.Sample
 {

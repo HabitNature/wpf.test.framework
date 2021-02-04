@@ -10,11 +10,11 @@ namespace Wpf.Test.Framework.Extensions
     {
         public static void DoClick(this FrameworkElement element)
         {
-            if(element is ButtonBase)
+            if (element is ButtonBase)
             {
                 element.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent));
             }
-            else if(element is MenuItem)
+            else if (element is MenuItem)
             {
                 element.RaiseEvent(new RoutedEventArgs(MenuItem.ClickEvent));
             }
@@ -32,7 +32,7 @@ namespace Wpf.Test.Framework.Extensions
 
         public static void DoDoubleClick(this FrameworkElement element)
         {
-            if(element is Control)
+            if (element is Control)
             {
                 element.RaiseEvent(new RoutedEventArgs(Control.MouseDoubleClickEvent));
             }

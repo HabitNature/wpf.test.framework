@@ -32,7 +32,7 @@ namespace Wpf.Test.Framework
                 {
                     await test(app);
                 }
-                catch(Exception exp)
+                catch (Exception exp)
                 {
                     AppDomain.CurrentDomain.SetData("Exception", exp);
                 }
@@ -53,7 +53,7 @@ namespace Wpf.Test.Framework
 
         protected void ExecuteInSeparateAppDomain(CrossAppDomainDelegate testDelegate)
         {
-            if(null == Application.ResourceAssembly)
+            if (null == Application.ResourceAssembly)
             {
                 Application.ResourceAssembly = Assembly.GetAssembly(typeof(TApplication));
             }
@@ -80,7 +80,7 @@ namespace Wpf.Test.Framework
 
                 Exception exp = appDomain.GetData("Exception") as Exception;
 
-                if(null != exp)
+                if (null != exp)
                 {
                     throw exp;
                 }
