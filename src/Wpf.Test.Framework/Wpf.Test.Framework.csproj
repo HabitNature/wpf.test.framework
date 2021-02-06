@@ -48,7 +48,9 @@
     <Compile Include="ApplicationProxy.cs" />
     <Compile Include="AppUiTester.cs" />
     <Compile Include="ElementFinder.cs" />
-    <Compile Include="ElementProxy.cs" />
+    <Compile Include="IViewProxy.cs" />
+    <Compile Include="IWindowProxy.cs" />
+    <Compile Include="ViewProxy.cs" />
     <Compile Include="Exceptions\ElementNotFoundException.cs" />
     <Compile Include="Exceptions\WindowNotFoundException.cs" />
     <Compile Include="Extensions\FrameworkElementMouseExtension.cs" />
